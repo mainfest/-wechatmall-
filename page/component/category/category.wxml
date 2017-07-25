@@ -1,0 +1,28 @@
+<view class="main">
+    <view class="categroy-left">
+        <view wx:for="{{categories}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"
+            bindtap="switchTab"
+            class="cate-list {{curIndex === index?'on':''}}">{{item.name}}</view>
+    </view>
+
+    <scroll-view class="categroy-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="false">
+        <block wx:if="{{toView==item.id}}" wx:for="{{categories}}" wx:for-index wx:key="idx">
+            <view  id="{{item.name}}" class="cate-box">
+                <view class="cate-banner">
+                    <image src="{{item.icon}}"></image>
+                </view>
+                <view  class="cate-title">
+                    <text>{{item.name}}</text>
+                </view>
+                <view class="product">
+                    <view class="product-list" wx:for="{{detail}}" wx:key="index" data-id="{{val.id}}"wx:for-item="val" bindtap="toDetailsTap" >
+                            <image src="{{val.pic}}"></image>
+                            <view class="classname"><text>{{val.name}}</text></view>
+                            <view id="price"class="classname" ><text>{{val.minPrice+"￥"}}</text></view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+
+</view>
